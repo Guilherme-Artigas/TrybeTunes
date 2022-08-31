@@ -14,3 +14,5 @@ npm test 13.ProfilePage.test.js
 npm test 14.EditProfilePage.test.js
 
 npm run lint
+
+git add . && git commit -m "" && git push
