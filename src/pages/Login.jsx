@@ -1,5 +1,7 @@
+import '../index.css';
+
 import React from 'react';
-import { Redirect, BrowserRouter, Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
 
@@ -52,15 +54,13 @@ class Login extends React.Component {
     const { offButton, fieldNameValue, isLoaded, screenLoading } = this.state;
     if (screenLoading) {
       return (
-        <BrowserRouter>
-          <Route path="/">
-            {isLoaded ? <Redirect to="/search" /> : <Loading />}
-          </Route>
-        </BrowserRouter>
+        <Route path="/">
+          {isLoaded ? <Redirect to="/search" /> : <Loading />}
+        </Route>
       );
     }
     return (
-      <div data-testid="page-login">
+      <div data-testid="page-login" className="telaLogin">
         <h1>Login</h1>
         <form>
           <label htmlFor="fieldName">
@@ -72,6 +72,7 @@ class Login extends React.Component {
               data-testid="login-name-input"
               id="fieldName"
               onChange={ this.handleNameUser }
+              className="nomeLogin"
             />
           </label>
 

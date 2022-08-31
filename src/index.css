@@ -3,3 +3,60 @@
   margin: 0;
   padding: 0;
 }
+
+.telaLogin {
+  margin: 200px 0;
+  text-align: center;
+}
+
+.nomeLogin {
+  margin: 50px 0;
+}
+
+.listaHeader {
+  background: dodgerblue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 20px 0;
+}
+
+.listaHeader li {
+  margin: 0 20px;
+}
+
+a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.formSearch {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.formSearch input {
+  border: none;
+  border-bottom: 1px solid gray;
+  padding: 5px;
+}
+
+.formSearch button {
+  background: dodgerblue;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin: 0 10px;
+  padding: 10px;
+}
+
+.formSearch button:disabled {
+  background: gray;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin: 0 10px;
+  padding: 10px;
+}

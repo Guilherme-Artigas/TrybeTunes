@@ -1,0 +1,16 @@
+npm test 01.BrowserRouter.test.js
+npm test 02.LoginPage.test.js
+npm test 03.HeaderComponent.test.js
+npm test 04.NavigationLinks.test.js
+npm test 05.SearchPage.test.js
+npm test 06.SearchFetch.test.js
+npm test 07.AlbumPage.test.js
+npm test 08.AddFavoritesSongs.test.js
+npm test 09.GetFavoriteSongs.test.js
+npm test 10.UpdateFavoriteSongsList.test.js
+npm test 11.RemoveFavoritesSongs.test.js
+npm test 12.FavoriteSongsPage.test.js
+npm test 13.ProfilePage.test.js
+npm test 14.EditProfilePage.test.js
+
+npm run lint

@@ -1,3 +1,5 @@
+import '../index.css';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
@@ -34,8 +36,9 @@ class Header extends React.Component {
     const { name } = this.state;
     return (
       <header data-testid="header-component">
-        <h1 data-testid="header-user-name">{name === '' ? <Loading /> : name}</h1>
-        <ul>
+        <span data-testid="header-user-name">{name === '' ? <Loading /> : name}</span>
+        <ul className="listaHeader">
+          <li><Link to="/">Home</Link></li>
           <li><Link to="/search" data-testid="link-to-search">Buscar</Link></li>
           <li><Link to="/favorites" data-testid="link-to-favorites">Favoritas</Link></li>
           <li><Link to="/profile" data-testid="link-to-profile">Perfil</Link></li>
