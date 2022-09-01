@@ -27,12 +27,11 @@
 }
 
 .listaAlbuns a {
-  background: white;
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 1px 1px 2px gray;
   color: black;
   margin: 5px;
-  padding: 20px;
+  padding-bottom: 20px;
   text-align: center;
   text-decoration: none;
   width: 20%;
@@ -90,4 +89,8 @@
 
 .listaAlbuns h2 {
   margin: 20px 0;
+}
+
+.listaAlbuns a li img {
+  width: 100%;
 }
