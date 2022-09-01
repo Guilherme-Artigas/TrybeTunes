@@ -94,3 +94,20 @@
 .listaAlbuns a li img {
   width: 100%;
 }
+
+/* Estilização da página de album */
+.listaMusicasPai {
+  list-style-type: none;
+  padding: 25px 200px;
+}
+
+.listaMusicasPai li {
+  border-bottom: 1px solid gray;
+  margin: 1px;
+  padding: 10px;
+  text-align: center;
+}
+
+.album {
+  width: 100%;
+}
