@@ -111,3 +111,9 @@
 .album {
   width: 100%;
 }
+
+.favoriteSong {
+  bottom: 20px;
+  left: 20px;
+  position: relative;
+}
