@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import getMusics from '../services/musicsAPI';
+import MusicCard from './MusicCard';
 
 class Album extends React.Component {
   constructor(props) {
@@ -30,34 +31,7 @@ class Album extends React.Component {
     return (
       <div data-testid="page-album">
         <Header />
-        {albumFull.length > 0 && (
-          <ul className="listaMusicasPai">
-            {albumFull.map((e, i) => (
-              <li key={ `${e.artistName}${i}` }>
-                {i === 0 && (
-                  <div className="album">
-                    <img src={ e.artworkUrl100 } alt={ e.artistName } />
-                    <h2 data-testid="album-name">{e.collectionName}</h2>
-                    <p data-testid="artist-name">{e.artistName}</p>
-                  </div>
-                )}
-                {i > 0 && (
-                  <div className="">
-                    <h3>{e.trackName}</h3>
-                    <audio data-testid="audio-component" src={ e.previewUrl } controls>
-                      <track kind="captions" />
-                      O seu navegador não suporta o elemento
-                      {' '}
-                      {' '}
-                      <code>audio</code>
-                      .
-                    </audio>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
+        <MusicCard albumFull={ albumFull } />
       </div>
     );
   }

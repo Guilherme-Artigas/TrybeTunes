@@ -3,7 +3,7 @@ import '../index.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
-import Loading from './Loading';
+import Carregando from './Loading';
 
 class Header extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Header extends React.Component {
     const { name } = this.state;
     return (
       <header data-testid="header-component">
-        <span data-testid="header-user-name">{name === '' ? <Loading /> : name}</span>
+        <span data-testid="header-user-name">{name === '' ? <Carregando /> : name}</span>
         <ul className="listaHeader">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/search" data-testid="link-to-search">Buscar</Link></li>
