@@ -10,11 +10,16 @@ class MusicCard extends React.Component {
     super(props);
     this.state = {
       messageLoading: false,
-      selectThis: getFavoriteSongs().then((response) => response).then((r) => r),
+      favoritesList: [],
     };
 
     this.favoring = this.favoring.bind(this);
     this.handleClickCheck = this.handleClickCheck.bind(this);
+    this.retrieveList = this.retrieveList.bind(this);
+  }
+
+  async componentDidMount() {
+    this.retrieveList();
   }
 
   handleClickCheck(/* event */) {
@@ -30,14 +35,18 @@ class MusicCard extends React.Component {
   // Quando clicado chama a função que salva a música no localStorage.
   async favoring(music) {
     await addSong(music);
+    await this.retrieveList();
+  }
+
+  async retrieveList() {
+    const listRecoveredSongs = await getFavoriteSongs();
+    this.setState({ favoritesList: listRecoveredSongs });
   }
 
   render() {
     const { albumFull } = this.props;
-    const { messageLoading, selectThis } = this.state;
-    // setTimeout(() => console.log(selectThis), 1000);
-    // const teste = selectThis.then((r) => r).then((data) => data);
-    console.log(selectThis);
+    const { messageLoading, favoritesList } = this.state;
+
     return (
       <div>
         {messageLoading && <Loading />}
@@ -72,11 +81,12 @@ class MusicCard extends React.Component {
                         <input
                           type="checkbox"
                           id="fieldFavorite"
-                          name={ e.trackNumber }
                           data-testid={ `checkbox-music-${e.trackId}` }
                           onClick={ () => this.favoring(e) }
                           onChange={ this.handleClickCheck }
                           className="favoriteSong"
+                          checked={ favoritesList
+                            .some((music) => music.trackId === e.trackId) }
                         />
                       </label>
                     </div>
