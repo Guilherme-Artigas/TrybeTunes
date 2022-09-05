@@ -2,7 +2,7 @@ import '../index.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends React.Component {
@@ -10,7 +10,7 @@ class MusicCard extends React.Component {
     super(props);
     this.state = {
       messageLoading: false,
-      songsSaved: '',
+      selectThis: getFavoriteSongs().then((response) => response).then((r) => r),
     };
 
     this.favoring = this.favoring.bind(this);
@@ -27,18 +27,20 @@ class MusicCard extends React.Component {
     });
   }
 
-  async favoring(album) {
-    const returnAPI = await addSong(album);
-    if (returnAPI === 'OK') this.setState({ songsSaved: returnAPI });
+  // Quando clicado chama a função que salva a música no localStorage.
+  async favoring(music) {
+    await addSong(music);
   }
 
   render() {
     const { albumFull } = this.props;
-    const { messageLoading, songsSaved } = this.state;
+    const { messageLoading, selectThis } = this.state;
+    // setTimeout(() => console.log(selectThis), 1000);
+    // const teste = selectThis.then((r) => r).then((data) => data);
+    console.log(selectThis);
     return (
       <div>
         {messageLoading && <Loading />}
-        {songsSaved === 'OK' && 'Graças a deus!'}
         <section>
           {albumFull.length > 0 && (
             <ul className="listaMusicasPai">
@@ -67,10 +69,10 @@ class MusicCard extends React.Component {
                         .
                       </audio>
                       <label htmlFor="fieldFavorite">
-                        {/* Favorita */}
                         <input
                           type="checkbox"
                           id="fieldFavorite"
+                          name={ e.trackNumber }
                           data-testid={ `checkbox-music-${e.trackId}` }
                           onClick={ () => this.favoring(e) }
                           onChange={ this.handleClickCheck }
