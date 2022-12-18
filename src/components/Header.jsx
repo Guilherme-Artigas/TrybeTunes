@@ -20,7 +20,7 @@ class Header extends Component {
         {userProfile.name === undefined && <Carregando />}
         <p data-testid="header-user-name">{userProfile.name}</p>
         <ul>
-          <Link to="/">
+          <Link to="/TrybeTunes">
             <li>Home</li>
           </Link>
           <Link to="/search" data-testid="link-to-search">

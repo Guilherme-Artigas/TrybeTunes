@@ -20,12 +20,11 @@ class Profile extends Component {
   render() {
     const { userProfile, loading } = this.state;
 
-    // if (loading) return <Carregando />;
+    if (loading) return <Carregando />;
 
     return (
       <>
         <Header />
-        {loading && <Carregando />}
         <main data-testid="page-profile">
           <section>
             <h4>Perfil</h4>
