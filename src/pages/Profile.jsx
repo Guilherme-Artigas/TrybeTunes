@@ -8,21 +8,25 @@ import Header from '../components/Header';
 class Profile extends Component {
   state = {
     userProfile: {},
+    loading: false,
   };
 
   async componentDidMount() {
+    this.setState({ loading: true });
     const user = await getUser();
-    this.setState({ userProfile: user });
+    this.setState({ userProfile: user, loading: false });
   }
 
   render() {
-    const { userProfile } = this.state;
+    const { userProfile, loading } = this.state;
+
+    // if (loading) return <Carregando />;
 
     return (
       <>
         <Header />
+        {loading && <Carregando />}
         <main data-testid="page-profile">
-          {!userProfile.name && <Carregando />}
           <section>
             <h4>Perfil</h4>
             <img

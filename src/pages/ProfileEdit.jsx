@@ -2,7 +2,6 @@ import { React, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser, updateUser } from '../services/userAPI';
 
-import Carregando from '../components/Carregando';
 import Header from '../components/Header';
 
 class ProfileEdit extends Component {
@@ -12,7 +11,6 @@ class ProfileEdit extends Component {
     description: '',
     image: '',
     disabledButton: true,
-    loading: false,
   };
 
   async componentDidMount() {
@@ -22,6 +20,7 @@ class ProfileEdit extends Component {
       email: userProfile.email,
       description: userProfile.description,
       image: userProfile.image,
+      disabledButton: false,
     });
   }
 
@@ -44,21 +43,17 @@ class ProfileEdit extends Component {
 
   handleUpdateUser = async () => {
     const { name, email, description, image } = this.state;
-    this.setState({ loading: true });
     await updateUser({ name, email, description, image });
-    this.setState({ loading: false });
   };
 
   render() {
-    const { name, email, description, image, disabledButton, loading } = this.state;
-
-    if (loading) return <Carregando />;
+    const { name,
+      email, description, image, disabledButton } = this.state;
 
     return (
       <>
         <Header />
         <main data-testid="page-profile-edit">
-          {!name && <Carregando />}
           <h2>Atualizar Perfil</h2>
           <form>
             <label htmlFor="fieldName">
