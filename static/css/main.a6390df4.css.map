@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.a6390df4.css","mappings":"AAIA,0FACE,aACF","sources":["styles/Search.css"],"sourcesContent":[".button-search-artist {\n  transition: 1s;\n}\n\n.button-search-artist:disabled {\n  transition: 1s;\n}\n"],"names":[],"sourceRoot":""}
