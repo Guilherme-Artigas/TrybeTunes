@@ -1,8 +1,7 @@
 import { React, Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Button, TextField, CircularProgress } from '@mui/material';
 import { createUser } from '../services/userAPI';
-
-import Carregando from '../components/Carregando';
 
 import '../styles/Login.css';
 
@@ -39,29 +38,29 @@ class Login extends Component {
 
     return (
       <>
-        {loading && <Carregando />}
         {loadingReady && <Redirect to="/search" />}
-        <form data-testid="page-login">
-          <label htmlFor="fildName">
-            <input
-              type="text"
-              id="fildName"
-              placeholder="Nome"
-              data-testid="login-name-input"
-              onChange={ this.handleName }
-              value={ name }
-            />
-          </label>
-          <br />
-          <button
-            className="button-login"
-            type="button"
+        <form data-testid="page-login" className="formulario-login">
+          {loading && <CircularProgress />}
+          <h1 className="titulo-login">Trybe Tunes</h1>
+          <TextField
+            label="Nome"
+            id="outlined-size-small"
+            size="small"
+            sx={ { width: '80%', mb: 1 } }
+            data-testid="login-name-input"
+            onChange={ this.handleName }
+            value={ name }
+          />
+          <Button
+            variant="contained"
+            size="small"
+            sx={ { width: '80%' } }
             data-testid="login-submit-button"
             disabled={ validName }
             onClick={ this.handleClick }
           >
             Entrar
-          </button>
+          </Button>
         </form>
       </>
     );
