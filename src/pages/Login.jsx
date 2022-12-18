@@ -1,93 +1,69 @@
-import '../index.css';
-
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { React, Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
-import Loading from './Loading';
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fieldNameValue: '',
-      offButton: true,
-      isLoaded: false,
-      screenLoading: false,
-    };
+import Carregando from '../components/Carregando';
 
-    this.handleNameUser = this.handleNameUser.bind(this);
-    this.identifyUser = this.identifyUser.bind(this);
-  }
+import '../styles/Login.css';
 
-  handleNameUser(event) {
-    this.setState({ fieldNameValue: event.target.value }, () => {
-      const { fieldNameValue } = this.state;
-      const minimumSizeName = 2;
-      if (fieldNameValue.length > minimumSizeName) {
-        this.setState({ offButton: false });
-      } else {
-        this.setState({ offButton: true });
-      }
-    });
-  }
+class Login extends Component {
+  state = {
+    name: '',
+    validName: true,
+    loading: false,
+    loadingReady: false,
+  };
 
-  identifyUser(name) {
-    this.setState({
-      fieldNameValue: '',
-      screenLoading: true,
-    }, async () => {
-      const { fieldNameValue } = this.state;
-      const SizeName = 2;
-      if (fieldNameValue.length > SizeName) {
-        this.setState({ offButton: false });
-      } else {
-        this.setState({ offButton: true });
-      }
-      const response = await createUser(name);
-      if (response === 'OK') {
-        this.setState({ isLoaded: true });
-      }
-    });
-  }
+  handleName = ({ target: { value } }) => {
+    this.setState({ name: value }, this.handleButton);
+  };
+
+  handleButton = () => {
+    const { name } = this.state;
+    if (name.length > 2) {
+      this.setState({ validName: false });
+    } else {
+      this.setState({ validName: true });
+    }
+  };
+
+  handleClick = async () => {
+    const { name } = this.state;
+    this.setState({ loading: true });
+    await createUser({ name });
+    this.setState({ loading: false, loadingReady: true });
+  };
 
   render() {
-    const { offButton, fieldNameValue, isLoaded, screenLoading } = this.state;
-    if (screenLoading) {
-      return (
-        <Route path="/">
-          {isLoaded ? <Redirect to="/search" /> : <Loading />}
-        </Route>
-      );
-    }
+    const { name, validName, loading, loadingReady } = this.state;
+
     return (
-      <div data-testid="page-login" className="telaLogin">
-        <h1>Login</h1>
-        <form>
-          <label htmlFor="fieldName">
-            Nome:
+      <>
+        {loading && <Carregando />}
+        {loadingReady && <Redirect to="/search" />}
+        <form data-testid="page-login">
+          <label htmlFor="fildName">
             <input
               type="text"
-              name="username"
-              value={ fieldNameValue }
+              id="fildName"
+              placeholder="Nome"
               data-testid="login-name-input"
-              id="fieldName"
-              onChange={ this.handleNameUser }
-              className="nomeLogin"
+              onChange={ this.handleName }
+              value={ name }
             />
           </label>
-
           <br />
-
           <button
+            className="button-login"
             type="button"
             data-testid="login-submit-button"
-            disabled={ offButton }
-            onClick={ () => this.identifyUser({ name: fieldNameValue }) }
+            disabled={ validName }
+            onClick={ this.handleClick }
           >
             Entrar
           </button>
         </form>
-      </div>
+      </>
     );
   }
 }

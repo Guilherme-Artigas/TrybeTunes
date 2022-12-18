@@ -1,0 +1,7 @@
+.button-login {
+  transition: 1s;
+}
+
+.button-login:disabled {
+  transition: 1s;
+}

@@ -1,0 +1,7 @@
+.button-search-artist {
+  transition: 1s;
+}
+
+.button-search-artist:disabled {
+  transition: 1s;
+}

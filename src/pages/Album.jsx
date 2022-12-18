@@ -1,48 +1,37 @@
-import '../index.css';
-
-import React from 'react';
-import PropTypes from 'prop-types';
-import Header from './Header';
+import { React, Component } from 'react';
+import { shape, string } from 'prop-types';
 import getMusics from '../services/musicsAPI';
-import MusicCard from './MusicCard';
 
-class Album extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      albumFull: [],
-    };
+import Header from '../components/Header';
+import MusicCard from '../components/MusicCard';
 
-    this.fullAlbumInfo = this.fullAlbumInfo.bind(this);
-  }
+class Album extends Component {
+  state = {
+    selectedAlbum: [],
+  };
 
-  componentDidMount() {
-    this.fullAlbumInfo();
-  }
-
-  async fullAlbumInfo() {
+  async componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    const infoAlbum = await getMusics(id);
-    this.setState({ albumFull: infoAlbum });
+    this.setState({ selectedAlbum: await getMusics(id) });
   }
 
   render() {
-    const { albumFull } = this.state;
+    const { selectedAlbum } = this.state;
     return (
-      <div data-testid="page-album">
+      <>
         <Header />
-        <MusicCard albumFull={ albumFull } />
-      </div>
+        <main data-testid="page-album">
+          <MusicCard selectedAlbum={ selectedAlbum } />
+        </main>
+      </>
     );
   }
 }
 
 Album.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
+  match: shape,
+  params: shape,
+  id: string,
+}.isRequired;
 
 export default Album;
