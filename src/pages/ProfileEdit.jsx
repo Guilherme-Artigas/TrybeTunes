@@ -1,8 +1,11 @@
 import { React, Component } from 'react';
 import { Link } from 'react-router-dom';
+import { TextField, Button } from '@mui/material';
 import { getUser, updateUser } from '../services/userAPI';
 
 import Header from '../components/Header';
+
+import '../styles/ProfileEdit.css';
 
 class ProfileEdit extends Component {
   state = {
@@ -53,66 +56,75 @@ class ProfileEdit extends Component {
     return (
       <>
         <Header />
-        <main data-testid="page-profile-edit">
-          <h2>Atualizar Perfil</h2>
+        <main data-testid="page-profile-edit" className="conteudo-editar-perfil">
+          <h2 className="titulo-editar-perfil">Atualizar Perfil</h2>
           <form>
-            <label htmlFor="fieldName">
-              Nome:
-              <input
-                type="text"
-                id="fielName"
-                value={ name }
-                data-testid="edit-input-name"
-                onChange={ this.handleUserProfile }
-                name="name"
-              />
-            </label>
+            <TextField
+              label="Nome"
+              variant="filled"
+              type="text"
+              id="fielName"
+              value={ name }
+              data-testid="edit-input-name"
+              onChange={ this.handleUserProfile }
+              name="name"
+              size="small"
+              sx={ { mb: 3 } }
+              fullWidth
+            />
+            <TextField
+              label="E-mail"
+              variant="filled"
+              type="text"
+              id="fielEmail"
+              value={ email }
+              data-testid="edit-input-email"
+              onChange={ this.handleUserProfile }
+              name="email"
+              size="small"
+              sx={ { mb: 3 } }
+              fullWidth
+            />
+            <TextField
+              label="URL Foto"
+              variant="filled"
+              type="text"
+              id="fielImage"
+              value={ image }
+              data-testid="edit-input-image"
+              onChange={ this.handleUserProfile }
+              name="image"
+              size="small"
+              sx={ { mb: 3 } }
+              fullWidth
+            />
+            <TextField
+              label="Descrição"
+              variant="filled"
+              type="text"
+              id="fielDescription"
+              value={ description }
+              data-testid="edit-input-description"
+              onChange={ this.handleUserProfile }
+              name="description"
+              size="small"
+              sx={ { mb: 3 } }
+              rows={ 4 }
+              multiline
+              fullWidth
+            />
             <br />
-            <label htmlFor="fieldEmail">
-              E-mail:
-              <input
-                type="text"
-                id="fielEmail"
-                value={ email }
-                data-testid="edit-input-email"
-                onChange={ this.handleUserProfile }
-                name="email"
-              />
-            </label>
-            <br />
-            <label htmlFor="fieldDescription">
-              Descrição:
-              <input
-                type="text"
-                id="fielDescription"
-                value={ description }
-                data-testid="edit-input-description"
-                onChange={ this.handleUserProfile }
-                name="description"
-              />
-            </label>
-            <br />
-            <label htmlFor="fieldImage">
-              Mudar Foto:
-              <input
-                type="text"
-                id="fielImage"
-                value={ image }
-                data-testid="edit-input-image"
-                onChange={ this.handleUserProfile }
-                name="image"
-              />
-            </label>
-            <br />
-            <Link to="/profile">
-              <button
+            <Link to="/profile" className="botao-salvar-perfil">
+              <Button
+                variant="contained"
                 type="button"
                 data-testid="edit-button-save"
                 disabled={ disabledButton }
                 onClick={ this.handleUpdateUser }
+                fullWidth
               >
-                Editar perfil
-              </button>
+                Salvar
+              </Button>
             </Link>
           </form>
         </main>
