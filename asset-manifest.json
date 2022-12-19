@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/TrybeTunes/static/css/main.313c1165.css",
-    "main.js": "/TrybeTunes/static/js/main.9581e13a.js",
+    "main.css": "/TrybeTunes/static/css/main.6ed9ce04.css",
+    "main.js": "/TrybeTunes/static/js/main.82b6349f.js",
     "index.html": "/TrybeTunes/index.html",
-    "main.313c1165.css.map": "/TrybeTunes/static/css/main.313c1165.css.map",
-    "main.9581e13a.js.map": "/TrybeTunes/static/js/main.9581e13a.js.map"
+    "main.6ed9ce04.css.map": "/TrybeTunes/static/css/main.6ed9ce04.css.map",
+    "main.82b6349f.js.map": "/TrybeTunes/static/js/main.82b6349f.js.map"
   },
   "entrypoints": [
-    "static/css/main.313c1165.css",
-    "static/js/main.9581e13a.js"
+    "static/css/main.6ed9ce04.css",
+    "static/js/main.82b6349f.js"
   ]
 }
