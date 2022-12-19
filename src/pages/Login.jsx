@@ -1,6 +1,7 @@
 import { React, Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, TextField, CircularProgress } from '@mui/material';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
 import { createUser } from '../services/userAPI';
 
 import '../styles/Login.css';
@@ -40,7 +41,7 @@ class Login extends Component {
       <>
         {loadingReady && <Redirect to="/search" />}
         <form data-testid="page-login" className="formulario-login">
-          {loading && <CircularProgress />}
+          <HeadphonesIcon sx={ { fontSize: 200, color: '#1976d2' } } />
           <h1 className="titulo-login">Trybe Tunes</h1>
           <TextField
             label="Nome"
@@ -53,14 +54,15 @@ class Login extends Component {
           />
           <Button
             variant="contained"
-            size="small"
-            sx={ { width: '80%' } }
+            size="medium"
+            sx={ { width: '80%', mb: 5 } }
             data-testid="login-submit-button"
             disabled={ validName }
             onClick={ this.handleClick }
           >
             Entrar
           </Button>
+          {loading && <CircularProgress />}
         </form>
       </>
     );
