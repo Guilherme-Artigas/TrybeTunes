@@ -1,8 +1,15 @@
 import { React, Component } from 'react';
+import { CircularProgress } from '@mui/material';
+
+import '../styles/Carregando.css';
 
 class Carregando extends Component {
   render() {
-    return <h1>Carregando...</h1>;
+    return (
+      <div>
+        <CircularProgress classname="carregando" />
+      </div>
+    );
   }
 }
 

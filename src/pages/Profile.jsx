@@ -1,9 +1,12 @@
 import { React, Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Avatar, Button } from '@mui/material';
 import { getUser } from '../services/userAPI';
 
 import Carregando from '../components/Carregando';
 import Header from '../components/Header';
+
+import '../styles/Profile.css';
 
 class Profile extends Component {
   state = {
@@ -25,21 +28,20 @@ class Profile extends Component {
     return (
       <>
         <Header />
-        <main data-testid="page-profile">
+        <main data-testid="page-profile" className="conteudo-profile">
           <section>
-            <h4>Perfil</h4>
-            <img
+            <h2 className="titulo-profile">Perfil</h2>
+            <Avatar
               src={ userProfile.image }
               alt={ `Foto do usúario: ${userProfile.name}` }
               data-testid="profile-image"
+              sx={ { height: 200, width: 200, mx: 'auto', mb: 10 } }
             />
             <p data-testid="header-user-name">{userProfile.name}</p>
             <p>{userProfile.email}</p>
-            <p>{userProfile.description}</p>
-            <Link to="/profile/edit">
-              <button type="button">
-                Editar perfil
-              </button>
+            <p className="descricao">{userProfile.description}</p>
+            <Link to="/profile/edit" className="botao-editar-perfil">
+              <Button variant="contained" fullWidth>Editar perfil</Button>
             </Link>
           </section>
         </main>

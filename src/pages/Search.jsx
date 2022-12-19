@@ -1,8 +1,9 @@
 import { React, Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
+import { Button, TextField } from '@mui/material';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
+import Header from '../components/Header';
 import Carregando from '../components/Carregando';
 
 import '../styles/Search.css';
@@ -58,31 +59,36 @@ class Search extends Component {
     return (
       <>
         <Header />
-        <form data-testid="page-search">
+        <form data-testid="page-search" className="formulario-busca-banda">
           {loading ? (
-            <Carregando />
+            <p><Carregando /></p>
           ) : (
             <>
-              <label htmlFor="searchArtist">
-                <input
-                  type="text"
-                  name="searchArtist"
-                  id="searchArtist"
-                  data-testid="search-artist-input"
-                  onChange={ this.handleArtist }
-                  value={ nameArtist }
-                  placeholder="Nome Artista/Álbum"
-                />
-              </label>
-              <button
+              <TextField
+                label="Banda / Artista / Álbum"
+                variant="filled"
+                type="text"
+                name="searchArtist"
+                id="searchArtist"
+                data-testid="search-artist-input"
+                onChange={ this.handleArtist }
+                value={ nameArtist }
+                size="small"
+                sx={ { mt: '20px', mb: '5px' } }
+                fullWidth
+              />
+              <Button
+                variant="contained"
                 type="button"
                 data-testid="search-artist-button"
                 disabled={ disableButton }
                 className="button-search-artist"
                 onClick={ this.searchArtists }
+                size="small"
+                fullWidth
               >
                 Pesquisar
-              </button>
+              </Button>
             </>
           )}
         </form>
