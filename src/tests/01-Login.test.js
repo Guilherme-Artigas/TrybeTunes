@@ -1,20 +1,23 @@
-import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './helpers/renderWithRouter';
-import Login from '../pages/Login';
-import { createUser } from '../services/userAPI';
+import * as userAPI from '../services/userAPI';
+import renderPath from './helpers/renderPath';
 
 describe('Testes direcionados ao comportamento da página de Login...', () => {
-  it('Campo para digitar nome está na tela: ', () => {
-    renderWithRouter(<Login />);
+  beforeEach(() => {
+    localStorage.clear();
+    jest.resetAllMocks();
+  });
+  
+  it('Campo para digitar nome está na tela: ', async () => {
+    renderPath('/TrybeTunes');
 
     const nomeUsuario = screen.getByRole('textbox');
     expect(nomeUsuario).toBeInTheDocument();
   });
 
   it('É possível digitar um nome de usuário no campo nome: ', () => {
-    renderWithRouter(<Login />);
+    renderPath('/TrybeTunes');
 
     const nomeUsuario = screen.getByRole('textbox');
     expect(nomeUsuario).toBeInTheDocument();
@@ -26,38 +29,60 @@ describe('Testes direcionados ao comportamento da página de Login...', () => {
   });
 
   it('Botão Entrar está na tela: ', () => {
-    renderWithRouter(<Login />);
+    renderPath('/TrybeTunes');
 
     const botaoLogin = screen.getByRole('button', { name: /entrar/i });
     expect(botaoLogin).toBeInTheDocument();
   });
 
-  it('Botão de entrar só habilita com um nome válido: ', () => {
-    renderWithRouter(<Login />);
+  it('Botão de entrar só habilita com um nome válido (sendo maior ou igual 3 caracteres): ', () => {
+    renderPath('/TrybeTunes');
 
     const nomeUsuario = screen.getByRole('textbox');
     expect(nomeUsuario).toBeInTheDocument();
-
-    const USER_NAME = 'Usuario';
-    userEvent.type(nomeUsuario, USER_NAME);
+    expect(nomeUsuario.value).toBe('');
 
     const botaoLogin = screen.getByRole('button', { name: /entrar/i });
+    expect(botaoLogin).toBeInTheDocument();
+    expect(botaoLogin).toBeDisabled();
+
+    userEvent.type(nomeUsuario, 'T');
+    expect(nomeUsuario.value).toBe('T');
+    expect(botaoLogin).toBeDisabled();
+
+    userEvent.type(nomeUsuario, 'e');
+    expect(nomeUsuario.value).toBe('Te');
+    expect(botaoLogin).toBeDisabled();
+
+    userEvent.type(nomeUsuario, 's');
+    expect(nomeUsuario.value).toBe('Tes');
     expect(botaoLogin).toBeEnabled();
+
+    nomeUsuario.setSelectionRange(2, 3);
+    userEvent.type(nomeUsuario, '{del}')
+    expect(nomeUsuario.value).toBe('Te');
+    expect(botaoLogin).toBeDisabled();
   });
 
   it('Verifica se o nome digitado é salvo na Storage do navegador: ', async () => {
-    renderWithRouter(<Login />);
+    const criaUsuario = jest.spyOn(userAPI, 'createUser');
 
-    const nomeUsuario = screen.getByRole('textbox');
-    expect(nomeUsuario).toBeInTheDocument();
-
-    const USER_NAME = 'Usuario';
-    userEvent.type(nomeUsuario, USER_NAME);
+    renderPath('/TrybeTunes');
 
     const botaoLogin = screen.getByRole('button', { name: /entrar/i });
+    expect(botaoLogin).toBeInTheDocument();
+    expect(botaoLogin).toBeDisabled();
+        
+    const nomeUsuario = screen.getByRole('textbox');
+    expect(nomeUsuario).toBeInTheDocument();
+    userEvent.type(nomeUsuario, 'Usuario');
+    expect(nomeUsuario.value).toBe('Usuario')
+    
     expect(botaoLogin).toBeEnabled();
+    userEvent.click(botaoLogin);
 
-    const retorno = await createUser(USER_NAME);
-    expect(retorno).toBe('OK');
+    const { name } = JSON.parse(localStorage.getItem('user'));
+    await waitFor(() => expect(name).toBe('Usuario'), { timeout: 3000 });
+    expect(criaUsuario).toBeCalled();
   });
 });
