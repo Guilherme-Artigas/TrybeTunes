@@ -84,7 +84,7 @@ class Search extends Component {
                 disabled={ disableButton }
                 className="button-search-artist"
                 onClick={ this.searchArtists }
-                size="small"
+                size="medium"
                 fullWidth
               >
                 Pesquisar
@@ -94,26 +94,32 @@ class Search extends Component {
         </form>
         <main>
           {searchResult.length > 0 && (
-            <ul>
-              <h2>{`Resultado de álbuns de: ${artistNameBackUp}`}</h2>
-              {searchResult.map((album) => (
-                <Link to={ `/album/${album.collectionId}` } key={ album.collectionId }>
-                  <li data-testid={ `link-to-album-${album.collectionId}` }>
-                    <img
-                      src={ album.artworkUrl100 }
-                      alt={ album.collectionName }
-                    />
-                    <p>{`Album: ${album.collectionName}`}</p>
-                    <p>{`Artista: ${album.artistName}`}</p>
-                    <p>{`Preço: ${album.collectionPrice}`}</p>
-                    <p>{`Quantidade de músicas: ${album.trackCount}`}</p>
-                  </li>
-                </Link>
-              ))}
-            </ul>
+            <>
+              <h2
+                className="titulo-pagina-buscas"
+              >
+                {`Resultado de álbuns de: ${artistNameBackUp}`}
+              </h2>
+              <ul className="lista-albuns">
+                {searchResult.map((album) => (
+                  <Link to={ `/album/${album.collectionId}` } key={ album.collectionId }>
+                    <li data-testid={ `link-to-album-${album.collectionId}` }>
+                      <img
+                        src={ album.artworkUrl100 }
+                        alt={ album.collectionName }
+                      />
+                      <p>{`Album: ${album.collectionName}`}</p>
+                      <p>{`Artista: ${album.artistName}`}</p>
+                      <p>{`Preço: USD ${album.collectionPrice}`}</p>
+                      <p>{`Qnt de músicas: ${album.trackCount}`}</p>
+                    </li>
+                  </Link>
+                ))}
+              </ul>
+            </>
           )}
           {searchStarted && !loading && searchResult.length < 1 && (
-            <h2>Nenhum álbum foi encontrado 😥</h2>
+            <h2 className="titulo-pagina-buscas">Nenhum álbum foi encontrado 😥</h2>
           )}
         </main>
       </>

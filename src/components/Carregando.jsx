@@ -5,11 +5,7 @@ import '../styles/Carregando.css';
 
 class Carregando extends Component {
   render() {
-    return (
-      <div>
-        <CircularProgress classname="carregando" />
-      </div>
-    );
+    return <CircularProgress className="carregando" />;
   }
 }
 
