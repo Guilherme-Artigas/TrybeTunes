@@ -1,5 +1,7 @@
 .formulario-busca-banda {
-  padding: 5px;
+  margin: 0 auto;
+  max-width: 725px;
+  padding: 10px;
 }
 
 .formulario-busca-banda p {
@@ -12,6 +14,8 @@
   flex-wrap: wrap;
   justify-content: space-around;
   list-style-type: none;
+  margin: 0 auto;
+  max-width: 725px;
 }
 
 .lista-albuns a {

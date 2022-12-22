@@ -1,4 +1,7 @@
 .lista-musicas-favoritadas {
+  list-style-type: none;
+  margin: 0 auto;
+  max-width: 725px;
   padding: 5px;
 }
 
