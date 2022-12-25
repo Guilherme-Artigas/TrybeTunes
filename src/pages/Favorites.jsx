@@ -39,11 +39,12 @@ class Favorites extends Component {
   render() {
     const { loading, favoriteList } = this.state;
 
+    if (loading) return <Carregando />;
+
     return (
       <>
         <Header />
         <ul data-testid="page-favorites" className="lista-musicas-favoritadas">
-          {loading && <Carregando />}
           {favoriteList.length > 0 && (
             favoriteList.map((music, index) => (
               <li key={ `${music.artistId}-${index}` }>
