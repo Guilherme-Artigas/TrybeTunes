@@ -4,12 +4,16 @@
   padding: 10px;
 }
 
+.conteudo-profile label {
+  display: block;
+  margin: 20px 0;
+}
+
 .conteudo-profile p {
   background: whitesmoke;
   border-bottom: 2px solid gray;
   border-radius: 3px 3px 0 0;
   flex-grow: 1;
-  margin: 20px 0;
   padding: 5px;
 }
 

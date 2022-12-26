@@ -37,9 +37,18 @@ class Profile extends Component {
               data-testid="profile-image"
               sx={ { height: 200, width: 200, mx: 'auto', mb: 10 } }
             />
-            <p data-testid="header-user-name">{userProfile.name}</p>
-            <p>{userProfile.email}</p>
-            <p className="descricao">{userProfile.description}</p>
+            <label htmlFor="fieldName">
+              Nome:
+              <p data-testid="header-user-name">{userProfile.name}</p>
+            </label>
+            <label htmlFor="fieldEmail">
+              Email:
+              <p>{userProfile.email}</p>
+            </label>
+            <label htmlFor="fieldDescription">
+              Descrição:
+              <p className="descricao">{userProfile.description}</p>
+            </label>
             <Link to="/profile/edit" className="botao-editar-perfil">
               <Button variant="contained" fullWidth>Editar perfil</Button>
             </Link>
