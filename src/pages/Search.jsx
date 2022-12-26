@@ -74,7 +74,7 @@ class Search extends Component {
                 onChange={ this.handleArtist }
                 value={ nameArtist }
                 size="small"
-                sx={ { mt: '20px', mb: '5px' } }
+                sx={ { mt: '10px', mb: '5px' } }
                 fullWidth
               />
               <Button
