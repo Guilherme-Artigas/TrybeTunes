@@ -59,10 +59,9 @@ class Search extends Component {
     return (
       <>
         <Header />
+        {loading && <Carregando />}
         <form data-testid="page-search" className="formulario-busca-banda">
-          {loading ? (
-            <p><Carregando /></p>
-          ) : (
+          {!loading && (
             <>
               <TextField
                 label="Banda / Artista / Álbum"

@@ -4,11 +4,6 @@
   padding: 10px;
 }
 
-.formulario-busca-banda p {
-  margin: 50px 0;
-  text-align: center;
-}
-
 .lista-albuns {
   display: flex;
   flex-wrap: wrap;
