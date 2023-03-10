@@ -1,4 +1,4 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { getFavoriteSongs, addSong, removeSong } from '../services/favoriteSongsAPI';

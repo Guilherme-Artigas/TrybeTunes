@@ -1,4 +1,4 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, TextField, CircularProgress } from '@mui/material';
 import HeadphonesIcon from '@mui/icons-material/Headphones';

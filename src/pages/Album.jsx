@@ -1,4 +1,4 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
 import { shape, string } from 'prop-types';
 import getMusics from '../services/musicsAPI';
 

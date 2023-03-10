@@ -1,4 +1,4 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
 import { getUser, updateUser } from '../services/userAPI';

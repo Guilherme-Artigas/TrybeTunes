@@ -1,4 +1,4 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';

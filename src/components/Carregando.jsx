@@ -1,4 +1,4 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
 import { CircularProgress } from '@mui/material';
 
 import '../styles/Carregando.css';

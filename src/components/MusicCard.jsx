@@ -1,4 +1,4 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
 import { arrayOf } from 'prop-types';
 import { Checkbox } from '@mui/material';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
